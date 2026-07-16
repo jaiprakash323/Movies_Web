@@ -6,7 +6,7 @@
 // consumer / (useContext( you ))
 import React, { useContext, useEffect, useState } from "react";
 
-const API_URL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`;
+export const API_URL = `http://www.omdbapi.com/?apikey=${process.env.REACT_APP_API_KEY}`;
 
 const AppContext = React.createContext();
 
@@ -18,6 +18,7 @@ const AppProvider = ({ children }) => {
     const [query, setQuery] = useState("titanic");
 
     const getMovies = async (url) => {
+        setIsLoading(true);
         try{
             const res = await fetch(url);
             const data = await res.json();
